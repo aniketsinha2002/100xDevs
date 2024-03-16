@@ -21,6 +21,7 @@ const User = mongoose.model("User", {
 // POST REQUEST
 app.post("/users/:username", async (req, res) => {
   const { username } = req.params;
+  
   // GETTING DATA FROM POST REQUEST BODY
   const { name, email, password } = req.body;
   // CHECKING IF USER ALREADY EXISTS IN DATABASE
