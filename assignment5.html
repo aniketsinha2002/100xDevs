@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- DEFINE CHARACTER ENCODING AND VIEWPORT FOR RESPONSIVENESS -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>replit</title>
+</head>
+
+<body>
+  <script>
+    // DECLARE TIMEOUT VARIABLE
+    let timeout;
+
+    // FUNCTION TO DEBOUNCE INPUTS
+    const debounceGetData = () => {
+      // CLEAR ANY PREVIOUS TIMEOUT
+      clearTimeout(timeout);
+      // SET NEW TIMEOUT TO CALL getData AFTER 1000 MILLISECONDS
+      timeout = setTimeout(() => {
+        getData();
+      }, 1000)
+    }
+
+    // FUNCTION TO FETCH DATA FROM SERVER
+    const getData = () => {
+      // RETRIEVE VALUES OF INPUTS
+      const a = document.getElementById("a").value;
+      const b = document.getElementById("b").value;
+
+      // FETCH DATA FROM SERVER USING INPUT VALUES
+      fetch('https://sum-server.100xdevs.com/sum?a=' + a + '&b=' + b)
+        .then((response) => {
+          response.json().then((data) => {
+            // UPDATE HTML WITH RECEIVED DATA
+            document.getElementById("ans").innerHTML = data;
+            console.log(data); // LOG DATA TO CONSOLE
+          })
+        })
+    }
+  </script>
+  <h1>SUM</h1>
+  <!-- INPUT ELEMENTS FOR USER TO ENTER VALUES -->
+  <input id="a" oninput="debounceGetData()" type="number">
+  <input id="b" oninput="debounceGetData()" type="number">
+  <!-- DIV ELEMENT TO DISPLAY RESULT -->
+  <div id="ans"></div>
+</body>
+
+</html>
