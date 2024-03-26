@@ -2,9 +2,12 @@
 const mongoose = require("mongoose");
 
 // CONNECT TO MONGODB DATABASE
-mongoose.connect(
-  "mongodb+srv://aniketsinha2002:Sinha2002@cluster0.43okpcx.mongodb.net/paytm"
-);
+const uri =
+  "mongodb+srv://USERNAME:PASSWORD@cluster0.43okpcx.mongodb.net/paytm?";
+
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+});
 
 // DEFINE USER SCHEMA
 const userSchema = mongoose.Schema({
